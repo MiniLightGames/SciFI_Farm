@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5207702b00f9b141bf93ae4dcb22648, type: 3}
+  m_Name: SeedGun
+  m_EditorClassIdentifier: 
+  Explored: 1
+  FireRate: 0.1
+  InventorySprite: {fileID: 21300000, guid: 92deaeb2301220245b677b521b9d6195, type: 3}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fcd97f9cdb258478b3796f9236b0d3, type: 3}
+  m_Name: SeedConverter
+  m_EditorClassIdentifier: 
+  Explored: 1
+  Name: SeedConverter
+  Price: 250
+  StructureSprite: {fileID: 21300000, guid: d4480338e1b577843a7de16341455c21, type: 3}
+  StructurePrefab: {fileID: 8979320114434347244, guid: 1e47e73f7a4c4364ebac73e1ba4f2a37,
+    type: 3}
+  StructureDescription: SeedConverter
