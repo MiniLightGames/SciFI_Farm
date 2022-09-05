@@ -9,6 +9,9 @@ public class SeedBullet : MonoBehaviour
     Seed _seedParameters;
     Rigidbody _rigidbody;
     BoxCollider _boxCollider;
+    Vector3 _endPoint;
+    bool _isMove;
+    SeedBedController _seedBed;
 
     public Seed SeedParameters => _seedParameters;
 
@@ -18,11 +21,30 @@ public class SeedBullet : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider>();
     }
 
-    public void InitBullet(Seed seed, Vector3 direction)
+    public void InitBullet(Seed seed, Vector3 endPoint, Vector3 direction, SeedBedController seedBed = null)
     {
         _seedParameters = seed;
+        _endPoint = endPoint;
         _rigidbody.AddForce(direction * _speed, ForceMode.Impulse);
+        _isMove = true;
+        _seedBed = seedBed;
         StartCoroutine(LifeTime());
+    }
+
+    void FixedUpdate()
+    {
+        if(_isMove)
+        {
+            float distance = (_endPoint - _rigidbody.position).magnitude;
+            if (distance <= 0.85f)
+            {
+                Stop();
+                if (_seedBed)
+                {
+                    _seedBed.Planted(this);
+                }
+            }
+        }
     }
 
     IEnumerator LifeTime()
@@ -31,11 +53,11 @@ public class SeedBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerStay(Collider other)
+    public void Stop()
     {
-        if(_boxCollider.enabled)
-        {
-            _boxCollider.enabled = false;
-        }
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
+        _boxCollider.enabled = false;
+        _isMove = false;
     }
 }

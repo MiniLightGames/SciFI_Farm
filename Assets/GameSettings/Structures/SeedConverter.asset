@@ -18,4 +18,6 @@ MonoBehaviour:
   StructureSprite: {fileID: 21300000, guid: d4480338e1b577843a7de16341455c21, type: 3}
   StructurePrefab: {fileID: 8979320114434347244, guid: 1e47e73f7a4c4364ebac73e1ba4f2a37,
     type: 3}
-  StructureDescription: SeedConverter
+  StructureDescription: "\u041A\u043E\u043D\u0432\u0435\u0440\u0442\u0435\u0440 \u0441\u0435\u043C\u044F\u043D,
+    \u043A\u043E\u043D\u0432\u0435\u0440\u0442\u0438\u0440\u0443\u0435\u0442 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u044F
+    \u0432 \u0441\u0435\u043C\u0435\u043D\u043D\u0430"

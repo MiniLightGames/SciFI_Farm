@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -2619348127893712257}
   - component: {fileID: 8202524340713908732}
   - component: {fileID: 7645835061852664608}
-  m_Layer: 0
+  - component: {fileID: -7227133700739989937}
+  m_Layer: 15
   m_Name: SM_Env_Plant_Large_Spiral_Preset_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,3 +129,30 @@ CapsuleCollider:
   m_Height: 13.962637
   m_Direction: 1
   m_Center: {x: -3.11, y: 6.3356686, z: 1.19}
+--- !u!205 &-7227133700739989937
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082736267521032}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.16483212, y: 6.3356686, z: -0.60015583}
+  m_Size: 13.962637
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23588144750337554}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23588144750337554}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23588144750337554}
+  m_Enabled: 1

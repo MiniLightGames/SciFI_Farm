@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GrabInfo))]
-public class Plant : MonoBehaviour
+public class Plant : MonoBehaviour, IGrab
 {
     public Action OnPlantGrown;
     public Action OnPlantPluck;
@@ -20,11 +20,13 @@ public class Plant : MonoBehaviour
     public Seed PlantInfo => _seed;
     public GrabInfo GrabInfo => _grabInfo;
 
+    public bool CanGrab { get => _seed.Explored ? !_isGrow : false; }
+
     public void Awake()
     {
         _grabInfo = GetComponent<GrabInfo>();
         _grabInfo.GrabHandler += PlantPluck;
-        _grabInfo.Init($"{_seed.Name}Plant", _seed.Explored, _seed.PlantSprite);
+        _grabInfo.Init($"{_seed.Name}Plant", this, _seed.PlantSprite);
     }
 
     public void OnUpdate()
@@ -53,13 +55,13 @@ public class Plant : MonoBehaviour
         _minSize = _transform.localScale / 4;
         _transform.localScale = _minSize;
 
-        _grabInfo.Init($"{_seed.Name}Plant", !_isGrow, _seed.PlantSprite);
+        _grabInfo.Init($"{_seed.Name}Plant", this, _seed.PlantSprite);
     }
 
     void PlantGrown()
     {
         _isGrow = false;
-        _grabInfo.Init($"{_seed.Name}Plant", !_isGrow, _seed.PlantSprite);
+        _grabInfo.Init($"{_seed.Name}Plant", this, _seed.PlantSprite);
         OnPlantGrown?.Invoke();
     }
 

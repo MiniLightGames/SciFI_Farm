@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed—lip : MonoBehaviour
+public class Seed—lip : MonoBehaviour, IGrab
 {
     GrabInfo _grabInfo;
 
@@ -11,6 +11,8 @@ public class Seed—lip : MonoBehaviour
     public Seed SeedParametrs => _seedParametrs;
     public GrabInfo GrabInfo => _grabInfo;
     public int Count => _grabInfo.Count;
+
+    public bool CanGrab => true;
 
     void Awake()
     {
@@ -28,9 +30,10 @@ public class Seed—lip : MonoBehaviour
         return null;
     }
 
-    public void SetSeed(Seed seed)
+    public GrabInfo SetSeed(Seed seed)
     {
         _seedParametrs = seed;
-        _grabInfo.Init(_seedParametrs.Name.ToString(), true, _seedParametrs.SeedSprite);
+        _grabInfo.Init(_seedParametrs.Name.ToString(), this, _seedParametrs.SeedSprite);
+        return _grabInfo;
     }
 }

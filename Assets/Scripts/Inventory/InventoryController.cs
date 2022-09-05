@@ -13,13 +13,12 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GrabInfo _seedGun;
     [SerializeField] GrabInfo _hoeGun;
     [SerializeField] GrabInfo _waterGun;
-    [SerializeField] GrabInfo _searchGun;
 
     List<ItemBox> _items = new List<ItemBox>();
 
     int _currentIndex;
 
-    void Awake()
+    void Start()
     {
         GetComponentsInChildren<ItemBox>(true, _items);
         _input.InvenotyKeyPress += OnInvenotyKeyPress;
@@ -27,7 +26,6 @@ public class InventoryController : MonoBehaviour
         _items[0].AddNewItem(_seedGun);
         _items[1].AddNewItem(_hoeGun);
         _items[2].AddNewItem(_waterGun);
-        _items[3].AddNewItem(_searchGun);
 
         for(int i = 0; i < _items.Count; i++)
         {
@@ -41,7 +39,7 @@ public class InventoryController : MonoBehaviour
 
         if(!itembox)
         {
-            for (int i = 4; i < _items.Count; i++)
+            for (int i = 3; i < _items.Count; i++)
             {
                 if(_items[i].IsEmpty)
                 {
@@ -78,7 +76,7 @@ public class InventoryController : MonoBehaviour
     public List<T> Find<T>()
     {
         List<T> items = new List<T>();
-        for (int i = 4; i < _items.Count; i++)
+        for (int i = 3; i < _items.Count; i++)
         {
             if (!_items[i].IsEmpty)
             {

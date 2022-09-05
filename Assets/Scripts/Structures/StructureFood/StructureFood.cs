@@ -17,6 +17,7 @@ public class StructureFood : BaseStructure
 
     [SerializeField] FoodController _controller;
     [SerializeField] StructureFoodMenu _menu;
+    [SerializeField] SeedShop _seedShop;
 
     void OnItemDrop(ItemBox item)
     {
@@ -36,7 +37,7 @@ public class StructureFood : BaseStructure
         }
 
         _menu.UpdatePlant(_currentPlant.GrabInfo);
-
+        _seedShop.AddSeed(_currentPlant.PlantInfo);
         item.Item.GameObject.transform.SetParent(transform);
         item.Item.GameObject.transform.localPosition = Vector3.zero;
         item.Item.GameObject.SetActive(false);

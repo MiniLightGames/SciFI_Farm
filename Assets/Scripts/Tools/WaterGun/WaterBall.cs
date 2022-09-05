@@ -5,6 +5,7 @@ public class WaterBall : MonoBehaviour
 {
     Rigidbody _rigibody;
     SphereCollider _collider;
+    BoxCollider _boxCollider;
     Transform _parent;
     Transform _transform;
 
@@ -18,6 +19,7 @@ public class WaterBall : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigibody = GetComponent<Rigidbody>();
         _collider = GetComponent<SphereCollider>();
+        _boxCollider = GetComponent<BoxCollider>();
 
         _parent = _transform.parent;
         _collider.enabled = false;
@@ -30,6 +32,7 @@ public class WaterBall : MonoBehaviour
         gameObject.SetActive(true);
         _collider.enabled = true;
         _rigibody.useGravity = true;
+        _boxCollider.enabled = false;
 
         _rigibody.AddForce(diraction * _speed, ForceMode.Impulse);
         _waterBallParticleSystem.Play();
@@ -38,6 +41,7 @@ public class WaterBall : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        _boxCollider.enabled = true;
         _collider.enabled = false;
         _rigibody.useGravity = false;
         _rigibody.velocity = Vector3.zero;

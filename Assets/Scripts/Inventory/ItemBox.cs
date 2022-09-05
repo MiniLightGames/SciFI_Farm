@@ -40,6 +40,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         _dropArea = GetComponent<DropArea>();
         _imageRectTransform = _itemImage.GetComponent<RectTransform>();   
         _countText.gameObject.SetActive(false);
+        _dropArea.SetItemBox(this);
     }
 
     void OnEnable()
@@ -60,6 +61,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     {
         if(!_isEmpty)
         {
+            _item.ColliderDisable();
             _item.GameObject.SetActive(true);
             _backGround.sprite = _enableSprite;
         }
@@ -75,7 +77,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             _itemImage.enabled = true;
             _itemImage.sprite = item.InventorySprite;
             _item.CountUpdate += UpdateItem;
-            if (item.Count >= 2)
+            if (item.Count > 0)
             {
                 _countText.text = $"x{_item.Count}";
                 _countText.gameObject.SetActive(true);
@@ -94,7 +96,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             _itemImage.sprite = item.InventorySprite;
             _item.SetCount(count);
             _item.CountUpdate += UpdateItem;
-            if (item.Count >= 2)
+            if (item.Count > 0)
             {
                 _countText.text = $"x{_item.Count}";
                 _countText.gameObject.SetActive(true);
@@ -203,7 +205,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             }
         }
 
-        if (_item.Count >= 2)
+        if (_item.Count > 0)
         {
             _countText.text = $"x{_item.Count}";
             _countText.gameObject.SetActive(true);
@@ -240,21 +242,36 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             {
                 if (dropArea.TryAccept(_item.GameObject))
                 {
+                    GrabInfo info = null;
+                    ItemBox box = dropArea.NeedReplace();
+                    if(box)
+                    {
+                        if (box.Item.ObjectName != Item.ObjectName)
+                        {
+                            info = box.Item;
+                        }
+                    }
+
                     dropArea.Drop(this);
                     Release();
+
+                    if(info)
+                    {
+                        AddNewItem(info);
+                    }
+
                     break;
                 }
             }
         }
 
-        if (results.Count > 0)
+        _imageRectTransform.localScale /= 2;
+        _imageRectTransform.SetParent(transform);
+        _imageRectTransform.anchoredPosition = Vector2.zero;
+
+        if (results.Count <= 0)
         {
-            _imageRectTransform.localScale /= 2;
-            _imageRectTransform.SetParent(transform);
-            _imageRectTransform.anchoredPosition = Vector2.zero;
-        }
-        else
-        {
+            _item.Release();
             Release();
         }
     }

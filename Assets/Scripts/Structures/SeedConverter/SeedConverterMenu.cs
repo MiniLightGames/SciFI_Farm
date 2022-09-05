@@ -10,6 +10,7 @@ using Zenject;
 public class SeedConverterMenu : MonoBehaviour
 {
     public Action<ItemBox> ItemIsDrop;
+    public Action<ItemBox> SeedIsDrop;
 
     public Action PlantBeginDrag;
     public Action SeedBeginDrag;
@@ -22,6 +23,7 @@ public class SeedConverterMenu : MonoBehaviour
     void OnEnable()
     {
         _plant.DropHandler += OnDrop;
+        _seed.DropHandler += OnSeedDrop;
 
         _plant.BeginDrag += PlantDrag;
         _seed.BeginDrag += SeedDrag;
@@ -77,6 +79,11 @@ public class SeedConverterMenu : MonoBehaviour
         ItemIsDrop?.Invoke(itemBox);
     }
 
+    public void OnSeedDrop(ItemBox itemBox)
+    {
+        SeedIsDrop?.Invoke(itemBox);
+    }
+
     void SeedDrag()
     {
         SeedBeginDrag?.Invoke();
@@ -90,6 +97,7 @@ public class SeedConverterMenu : MonoBehaviour
     void OnDisable()
     {
         _plant.DropHandler -= OnDrop;
+        _seed.DropHandler -= OnSeedDrop;
 
         _plant.BeginDrag -= PlantDrag;
         _seed.BeginDrag -= SeedDrag;

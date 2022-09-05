@@ -7,7 +7,13 @@ public class DropArea : MonoBehaviour
 {
 	public Action<ItemBox> OnDropHandler;
 
+	ItemBox _currentItemBox;
 	List<Type> FilterType = new List<Type>();
+
+	public void SetItemBox(ItemBox itemBox)
+    {
+		_currentItemBox = itemBox;
+	}
 
 	public bool TryAccept(GameObject item)
 	{
@@ -27,6 +33,16 @@ public class DropArea : MonoBehaviour
 
 		return true;
 	}
+
+	public ItemBox NeedReplace()
+    {
+		if(!_currentItemBox.IsEmpty)
+        {
+			return _currentItemBox;
+		}
+
+		return null;
+    }
 
 	public void Drop(ItemBox itemBox)
 	{

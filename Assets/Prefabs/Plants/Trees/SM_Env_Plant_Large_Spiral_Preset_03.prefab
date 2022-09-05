@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 4096181402952418}
   - component: {fileID: 33417088863502748}
   - component: {fileID: 23972452130767202}
-  - component: {fileID: 64250215345363004}
   - component: {fileID: 64874701379927432}
   - component: {fileID: 64939483617481798}
   - component: {fileID: 64782647122212376}
   - component: {fileID: 2100490610548308130}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SM_Env_Plant_Large_Spiral_Preset_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64250215345363004
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490537019950806}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43350026764693094, guid: aa1afcd64b7d81044a2f269e5920dd2b, type: 2}
 --- !u!64 &64874701379927432
 MeshCollider:
   m_ObjectHideFlags: 0

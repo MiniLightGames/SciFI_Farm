@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4429593859674238}
   - component: {fileID: 33417413059384592}
   - component: {fileID: 23009028866060476}
-  - component: {fileID: 64839578416160590}
   - component: {fileID: 6636237581698935206}
-  m_Layer: 0
+  - component: {fileID: -1113434106225589116}
+  m_Layer: 15
   m_Name: SM_Env_Plant_Fester_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64839578416160590
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922400701258650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43253062008060134, guid: 5dc011e70eeadd3408a301935b8cc16c, type: 2}
 --- !u!136 &6636237581698935206
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -113,3 +99,30 @@ CapsuleCollider:
   m_Height: 6.3563204
   m_Direction: 1
   m_Center: {x: -0.2655866, y: 2.4117217, z: -0.3984608}
+--- !u!205 &-1113434106225589116
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922400701258650}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.2655866, y: 2.4117217, z: -0.39846087}
+  m_Size: 6.3563204
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23009028866060476}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23009028866060476}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23009028866060476}
+  m_Enabled: 1

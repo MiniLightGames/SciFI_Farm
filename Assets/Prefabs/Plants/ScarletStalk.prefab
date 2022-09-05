@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7528171549523239129}
   - component: {fileID: 2979615347466656321}
   - component: {fileID: -5353413689289026955}
+  - component: {fileID: 3882173295968781759}
+  - component: {fileID: -7917875396071058613}
   m_Layer: 12
   m_Name: ScarletStalk
   m_TagString: Untagged
@@ -111,3 +113,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _seed: {fileID: 11400000, guid: 2a592c78bd399404fa8e34f6844ea7bb, type: 2}
+--- !u!114 &3882173295968781759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507087785267111963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a0ea83ef8b0d9449e52c844bc905d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 0
+  _name: 
+  _inventorySprite: {fileID: 0}
+--- !u!54 &-7917875396071058613
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507087785267111963}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

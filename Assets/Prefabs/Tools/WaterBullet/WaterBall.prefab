@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3150834194575103466}
   - component: {fileID: 8094865498859273636}
   - component: {fileID: 5122495324394048964}
+  - component: {fileID: 8072484269580857685}
   m_Layer: 4
   m_Name: WaterBall
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dff510ae81e65d47b5ec1b29545807b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 50
   _waterBallParticleSystem: {fileID: 5122495324394048964}
   _splashPrefab: {fileID: 250867215510362432}
   _SpeedCurve:
@@ -145,7 +146,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!135 &8094865498859273636
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4866,6 +4867,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!65 &8072484269580857685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122495324394048962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4619008134108074512
 PrefabInstance:
   m_ObjectHideFlags: 0

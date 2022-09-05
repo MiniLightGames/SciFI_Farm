@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class BuilderBox : MonoBehaviour
+public class BuilderBox : MonoBehaviour, IGrab
 {
     [Inject(Id = TransformId.Player)] Transform _playerTransform;
     [Inject] InputManager _inputManager;
@@ -29,6 +29,8 @@ public class BuilderBox : MonoBehaviour
     [SerializeField] AnimationCurve _SpeedCurve;
     [SerializeField] float _Speed;
 
+    public bool CanGrab => true;
+
     public void Awake()
     {
         _grabInfo = GetComponent<GrabInfo>();
@@ -39,7 +41,7 @@ public class BuilderBox : MonoBehaviour
 
     public GrabInfo Init(Structure structure)
     {
-        _grabInfo.Init(structure.Name, true, structure.StructureSprite);
+        _grabInfo.Init(structure.Name, this, structure.StructureSprite);
         var prefab = _container.InstantiatePrefab(structure.StructurePrefab, Vector3.zero, Quaternion.identity, _transform);
         _structure = prefab.GetComponent<StructureView>();
         _structure.InitView();
@@ -55,22 +57,26 @@ public class BuilderBox : MonoBehaviour
 
     void Update()
     {
-        if(!_isBuild)
+        if (!_isBuild)
         {
             ray = new Ray(_startPoint.position, _startPoint.forward);
-            if (Physics.Raycast(ray, out hitData, _raycastDistance))
+            RaycastHit[] hits = Physics.RaycastAll(ray, _raycastDistance);
+            bool needDisable = true;
+
+            for (int i = 0; i < hits.Length; i++)
             {
-                if (hitData.collider.gameObject.layer == _placeLayer && hitData.normal.y >= 0.98f)
+                if (hits[i].collider.isTrigger) { continue; }
+
+                if (hits[i].collider.gameObject.layer == _placeLayer && hits[i].normal.y >= 0.98f)
                 {
+                    hitData = hits[i];
                     ShowStructureView();
                     _structure.Show(true);
-                }
-                else
-                {
-                    _structure.Show(false);
+                    needDisable = false;
                 }
             }
-            else
+
+            if (needDisable)
             {
                 _structure.Show(false);
             }
@@ -79,7 +85,7 @@ public class BuilderBox : MonoBehaviour
 
     void ShowStructureView()
     {
-        Transform nearestStructure;
+       // Transform nearestStructure;
         Vector3 position = hitData.point;
         Quaternion rotation = Quaternion.FromToRotation(_playerTransform.up, hitData.normal) * _playerTransform.rotation;
 
@@ -87,15 +93,15 @@ public class BuilderBox : MonoBehaviour
 
         if (isFindPlace)
         {
-           // ShowStructureAnchor(nearestStructure, ref position, ref rotation);
+            // ShowStructureAnchor(nearestStructure, ref position, ref rotation);
         }
-        else if (_inputManager.LeftClick)
+        else if (_inputManager.LeftClick && _structure.CanBuild)
         {
             StartCoroutine(Coroutine_Throw(position, rotation));
         }
 
         _structure.Transform.position = position;
-        _structure.Transform.rotation = rotation;
+        _structure.Transform.rotation = Quaternion.AngleAxis(180, _playerTransform.up) * rotation;
     }
 
     void ShowStructureAnchor(Transform nearestSeedBed, ref Vector3 position, ref Quaternion rotation)
@@ -208,7 +214,7 @@ public class BuilderBox : MonoBehaviour
         while (lerp < 1)
         {
             _transform.position = Vector3.Lerp(startPos, target, _SpeedCurve.Evaluate(lerp));
-            _transform.rotation = Quaternion.Euler(_transform.rotation.eulerAngles.x + _SpeedCurve.Evaluate(lerp), 0,0);
+            _transform.rotation = Quaternion.Euler(_transform.rotation.eulerAngles.x + _SpeedCurve.Evaluate(lerp), 0, 0);
             float magnitude = (_transform.position - target).magnitude;
             if (magnitude < 0.4f)
             {
@@ -219,7 +225,7 @@ public class BuilderBox : MonoBehaviour
         }
 
         _structure.StartBuild();
-        if(_grabInfo.Count > 0)
+        if (_grabInfo.Count > 0)
         {
             _transform.SetParent(_parent);
             _transform.localPosition = _startPos;

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 33970265071640742}
   - component: {fileID: 23704211193017086}
   - component: {fileID: -9134644378892193181}
-  m_Layer: 0
+  - component: {fileID: -1399702384628380775}
+  m_Layer: 15
   m_Name: SM_Env_Plant_Fester_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,3 +99,30 @@ CapsuleCollider:
   m_Height: 2.984469
   m_Direction: 1
   m_Center: {x: -0.14313984, y: 0.86908823, z: -0.17650193}
+--- !u!205 &-1399702384628380775
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754519438340568}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.14313984, y: 0.8690882, z: -0.17650199}
+  m_Size: 3.1909614
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23704211193017086}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23704211193017086}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23704211193017086}
+  m_Enabled: 1

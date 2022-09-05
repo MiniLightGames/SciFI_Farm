@@ -87,7 +87,7 @@ public class Grabber : MonoBehaviour
         Transform trans = _hit.collider.transform;
         Vector3 pos = trans.position;
 
-        pos.y += trans.localScale.y / 2;
+        pos.y += trans.localScale.y / 4;
         float dist = (_hit.point - pos).magnitude + 0.25f;
 
         _grabMenu.position = Vector3.MoveTowards(pos, _transform.position, dist);

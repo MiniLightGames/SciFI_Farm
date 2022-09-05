@@ -40,7 +40,10 @@ public class HoeGun : BaseGun
 
     void OnEnable()
     {
-        SetStateSeedBedView(true);
+        if(!isDestroy)
+        {
+            SetStateSeedBedView(true);
+        }
     }
 
     void Update()

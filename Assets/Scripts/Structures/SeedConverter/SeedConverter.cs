@@ -43,6 +43,21 @@ public class SeedConverter : BaseStructure
         item.Item.GameObject.SetActive(false);
     }
 
+    void OnSeedDrop(ItemBox item)
+    {
+        if(_currentPlant)
+        {
+            if (item.Item.ObjectName != _currentPlant.PlantInfo.Name.ToString())
+            {
+                _needConvert = false;
+            }
+            else
+            {
+                _needConvert = true;
+            }
+        }
+    }
+
     public void Update()
     {
         if(_needConvert)
@@ -86,6 +101,8 @@ public class SeedConverter : BaseStructure
     public override void OpenStructure()
     {
         _menu.ItemIsDrop += OnItemDrop;
+        _menu.SeedIsDrop += OnSeedDrop;
+
         _menu.SeedBeginDrag += SeedRelese;
         _menu.PlantBeginDrag += PlantRelese;
 
@@ -102,6 +119,7 @@ public class SeedConverter : BaseStructure
     public void MenuExit()
     {
         _menu.ItemIsDrop -= OnItemDrop;
+        _menu.SeedIsDrop -= OnSeedDrop;
 
         _menu.SeedBeginDrag += SeedRelese;
         _menu.PlantBeginDrag += PlantRelese;
@@ -117,6 +135,10 @@ public class SeedConverter : BaseStructure
     void SeedRelese()
     {
         _currentSeed—lip = null;
+        if (_currentPlant)
+        {
+            _needConvert = true;
+        }
     }
 
     void PlantRelese()

@@ -7,7 +7,8 @@ public enum SeedsName
     Millet,
     Tomato,
     Trunk,
-    ScarletStalk
+    ScarletStalk,
+    Stickman
 }
 
 public enum SeedBedType

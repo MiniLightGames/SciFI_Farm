@@ -5,7 +5,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(GrabInfo))]
-public class BaseGun : MonoBehaviour
+public class BaseGun : MonoBehaviour, IGrab
 {
     [Inject] protected InputManager _inputManager;
 
@@ -18,11 +18,13 @@ public class BaseGun : MonoBehaviour
 
     GrabInfo _grabInfo;
 
+    public bool CanGrab => _gunParameters.Explored;
+
     public virtual void Awake()
     {
         _transform = GetComponent<Transform>();
         _grabInfo = GetComponent<GrabInfo>();
-        _grabInfo.Init(_gunParameters.name, _gunParameters.Explored, _gunParameters.InventorySprite);
+        _grabInfo.Init(_gunParameters.name, this, _gunParameters.InventorySprite);
         _fireRate = _gunParameters.FireRate;
     }
 }
